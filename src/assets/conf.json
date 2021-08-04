@@ -1,0 +1,17 @@
+{
+  "locations": [
+    {
+      "title": "Strandslag 1",
+      "subtitle": "Zandmotor Noord",
+      "data": "det",
+      "avatar": "img/Zandmotor_Strandslag.jpg"
+    },
+    {
+      "title": "Slag Schelpenpad",
+      "subtitle": "Zandmotor Zuid",
+      "data": "zuid",
+      "avatar": "img/Zandmotor_Schelpenpad.jpg"
+    }
+  ],
+  "satellite": "img/satellite.png"
+}
