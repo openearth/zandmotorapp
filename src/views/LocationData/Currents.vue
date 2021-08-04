@@ -28,7 +28,7 @@ export default {
     getImage (name) {
       const data = _.get(this.locationData, 'data', '')
       const imagePath = _.get(this.locationData, `results.${data}.${name}[${this.currentImage}].png`, [])
-      const url = `./results/${data}/${imagePath}`
+      const url = `./mobileapp/results/${data}/${imagePath}`
       return url
     }
   }

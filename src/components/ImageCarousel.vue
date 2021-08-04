@@ -50,7 +50,7 @@ export default {
     ...mapMutations(['setCurrentImage']),
     getImageLocation (imagePath) {
       const data = _.get(this.locationData, 'data', '')
-      const url = `./results/${data}/${imagePath}`
+      const url = `./mobileapp/results/${data}/${imagePath}`
       return url
     }
   }

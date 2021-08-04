@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import moment from 'moment'
+
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -14,7 +16,7 @@ export default new Vuex.Store({
       state.acceptedLegal = value
     },
     setLocations (state, locations) {
-      state.locations = locations
+      state.locations.push(locations)
     },
     setSatellite (state, satellite) {
       state.satellite = satellite
@@ -26,13 +28,30 @@ export default new Vuex.Store({
   actions: {
     readConfiguration (store) {
       const conf = require('@/assets/conf.json')
-      conf.locations.forEach(loc => {
+      conf.locations.forEach((loc, index) => {
         const dataName = loc.data
-        const result = require(`${process.env.BASE_URL}public/results/${dataName}/${dataName}.json`)
-        loc.results = result
+        fetch(`./mobileapp/results/${dataName}/${dataName}.json`)
+          .then(res => res.json())
+          .then(response => {
+            loc.results = response
+            store.commit('setLocations', loc)
+            if (index === 0) {
+              store.dispatch('setInitialImage', Object.entries(response)[0][1])
+            }
+          })
       })
-      store.commit('setLocations', conf.locations)
       store.commit('setSatellite', conf.satellite)
+    },
+    setInitialImage (store, results) {
+      const dates = results.currents
+      const now = moment()
+      const diffdates = dates.map(date => {
+        date = moment(date.datetime, 'ddd DD MMM HH:mm')
+        return now.diff(date)
+      })
+      const diffIndex = diffdates.indexOf(Math.min(...diffdates))
+
+      store.commit('setCurrentImage', diffIndex)
     }
   },
   getters: {

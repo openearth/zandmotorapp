@@ -1,7 +1,7 @@
 .DS_Store
 node_modules
 dist
-public/results
+public/mobileapp/results
 
 # local env files
 .env.local

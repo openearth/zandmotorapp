@@ -15,7 +15,7 @@
         <!-- eslint-disable-next-line -->
         <template v-slot:group.header="{ items }">
           <th colspan="3">
-            {{ items[0].name }}
+            {{ items[0].category }}
           </th>
         </template>
       </v-data-table>
