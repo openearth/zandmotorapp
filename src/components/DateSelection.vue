@@ -47,12 +47,10 @@ export default {
     },
     locationData () {
       const location = this.$route.params.location
-      console.log(location, this.locations, this.locations.find(loc => loc.title === location))
       return this.locations.find(loc => loc.title === location)
     },
     dates () {
       const data = _.get(this.locationData, 'data', '')
-      console.log('dates?', data)
       return _.get(this.locationData, `results.${data}.currents`, [])
     }
   },

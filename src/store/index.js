@@ -47,10 +47,9 @@ export default new Vuex.Store({
       const now = moment()
       const diffdates = dates.map(date => {
         date = moment(date.datetime, 'ddd DD MMM HH:mm')
-        return now.diff(date)
+        return Math.abs(now.diff(date))
       })
       const diffIndex = diffdates.indexOf(Math.min(...diffdates))
-
       store.commit('setCurrentImage', diffIndex)
     }
   },
