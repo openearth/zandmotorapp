@@ -6,6 +6,7 @@ import Currents from '@/views/LocationData/Currents.vue'
 import DryBeach from '@/views/LocationData/DryBeach.vue'
 import Weather from '@/views/LocationData/Weather.vue'
 import Satellite from '@/views/LocationData/Satellite.vue'
+import OutOfOrder from '@/views/LocationData/OutOfOrder.vue'
 
 Vue.use(VueRouter)
 
@@ -26,6 +27,11 @@ const routes = [
     name: 'Location',
     component: LocationPage,
     children: [
+      {
+        path: 'out-of-order',
+        name: 'out-of-order',
+        component: OutOfOrder
+      },
       {
         path: 'stroming',
         name: 'Stroming',

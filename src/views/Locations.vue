@@ -7,7 +7,7 @@
         <v-list-item
           v-for="location in locations"
           :key="location.name"
-          @input="$router.push({ path: `${location.title}/stroming` })"
+          @input="$router.push({ path: `${location.title}/${idle}` })"
         >
           <v-list-item-avatar>
             <v-img :src="location.avatar"></v-img>
@@ -30,7 +30,10 @@ import { mapGetters } from 'vuex'
 
 export default {
   computed: {
-    ...mapGetters(['locations'])
+    ...mapGetters(['locations']),
+    idle () {
+      return process.env.VUE_APP_STATUS === 'idle' ? 'out-of-order' : 'stroming'
+    }
   }
 }
 </script>

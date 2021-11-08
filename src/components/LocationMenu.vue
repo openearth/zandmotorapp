@@ -5,15 +5,20 @@
       background-color="primary"
       grow
     >
-      <v-tab to="stroming">
+
+      <v-tab to="out-of-order" v-if="idle">
+        Out of order
+      </v-tab>
+
+      <v-tab to="stroming" v-if="!idle">
         Stroming
       </v-tab>
 
-      <v-tab to="droogval">
+      <v-tab to="droogval" v-if="!idle">
         Droogval
       </v-tab>
 
-      <v-tab to="weer">
+      <v-tab to="weer" v-if="!idle">
         Weer
       </v-tab>
 
@@ -23,3 +28,13 @@
     </v-tabs>
   </v-toolbar>
 </template>
+
+<script>
+export default {
+  computed: {
+    idle () {
+      return process.env.VUE_APP_STATUS === 'idle'
+    }
+  }
+}
+</script>
